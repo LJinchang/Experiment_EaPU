@@ -16,7 +16,7 @@ Then, we can uncompress the package and place the folder `images` in `train/trai
 
 # Experiment result
 ## ResNet34 with cifar10
-!https://github.com/LJinchang/Experiment_EaPU/tree/main/train/train_cifar/results/comparison.png
+![comparison](https://github.com/LJinchang/Experiment_EaPU/tree/main/train/train_cifar/results/comparison.png)
 
 # Acknowledgement
 https://github.com/kuangliu/pytorch-cifar
