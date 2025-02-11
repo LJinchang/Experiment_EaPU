@@ -14,6 +14,10 @@ Then, we can unzip the package and place the folder in `train/train_srresnet/dat
 Mini_imagenet data can be available at https://drive.google.com/file/d/1rK4ihgKpW2iIIs5yWnSFyFYa4FURCxM9/view?usp=drive_link.  
 Then, we can uncompress the package and place the folder `images` in `train/train_mini_imagenet/mini_imagenet`.
 
+# Experiment result
+## ResNet34 with cifar10
+!https://github.com/LJinchang/Experiment_EaPU/tree/main/train/train_cifar/results/comparison.png
+
 # Acknowledgement
 https://github.com/kuangliu/pytorch-cifar
 
