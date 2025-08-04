@@ -1,4 +1,5 @@
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 import random
 import argparse
 import time
@@ -18,7 +19,6 @@ from utils import load_state_dict, make_directory, save_checkpoint, AverageMeter
 from optimizer import AdamNoise, AdamEaPU, SGDNoise, SGDEaPU
 
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 # # Random seed to maintain reproducible results
 # random.seed(0)
 # torch.manual_seed(0)
@@ -318,4 +318,5 @@ if __name__ == '__main__':
 
     np.save(f'results/record-{args.optimizer}({args.lr}-{args.clip_value}-{args.noise_std}-{args.ratio_wg}).npy',
             {'PSNRs':psnrs, 'SSIMs':ssims})
+
 
