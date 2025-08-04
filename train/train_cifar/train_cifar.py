@@ -1,4 +1,5 @@
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import argparse
 
 import torch
@@ -11,14 +12,13 @@ from optimizer import SGDNoise, SGDEaPU, AdamNoise, AdamEaPU
 from collections import defaultdict
 from tqdm import tqdm
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/CIFAR100 Training')
 parser.add_argument('--data-dir', default='./data', type=str, help='path to dataset')
 parser.add_argument('--cifar10', default=True, type=bool, help='cifar10 or cifar100')
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 
-parser.add_argument('--optimizer', default='adamnoise', help='optimizer type (adameapu, adamnoise, sgdeapu, sgdnoise)')
+parser.add_argument('--optimizer', default='adameapu', help='optimizer type (adameapu, adamnoise, sgdeapu, sgdnoise)')
 parser.add_argument('--lr', default=0.001, type=float, help='learning rate')
 parser.add_argument('--clip-value', default=2., type=float, help='clip_value = Vclip / Rwg, units: μS')
 parser.add_argument('--noise-std', default=2., type=float, help='noise std (the standard deviation of the εcell, units: μS)')
@@ -29,6 +29,7 @@ args = parser.parse_args()
 
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print(device)
 
 # Data
 trainloader, testloader = get_loader(root=args.data_dir, cifar10=args.cifar10)
