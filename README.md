@@ -3,6 +3,11 @@ The simulation code of EaPU.
 
 The code includes simulation experiments of the resnet with cifar10/cifar100, the swin transformer with mini-imagenet and the srresnet with ImageNet.
 
+# Environment
+For the CUDA version of PyTorch, the following command can be used for installation:
+  ```shell
+  pip install torch==2.4.1+cu118 torchvision==0.19.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+  ```
 # Pretrained weight
 The pretrained weight of the swin transformer is available at https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth.
 
