@@ -4,6 +4,8 @@ The simulation code of EaPU.
 The code includes simulation experiments of the ResNet with CIFAR10/CIFAR100, the Swin Transformer with mini-imagenet, and the SRResNet with ImageNet.
 
 # Environment
+Relevant simulation experiments were conducted using Python version 3.8.20, and all other higher Python versions are compatible with the code.
+
 For the CUDA version of PyTorch, the following command can be used for installation:
   ```shell
   pip3 install torch==2.4.1+cu118 torchvision==0.19.1+cu118 --index-url https://download.pytorch.org/whl/cu118
