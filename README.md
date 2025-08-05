@@ -24,7 +24,7 @@ Mini-imagenet data can be available at [mini-imagenet.zip](https://drive.google.
 Then, we can uncompress the archive and place the folder `images` in `train/train_mini_imagenet/mini_imagenet`.
 
 # Experiment result
-## ResNet34 with cifar10
+## ResNet34 with CIFAR10
 ![comparison](train/train_cifar/results/comparison.png)
 
 The figure shows the comparison of training with EaPU and the original algorithm. AdamEaPU is the suggested update method, while AdamNoise represents the original method. The postfix in the legend (a-b-c-d) represents the learning rate, the clipped value (clipped value = ΔW<sub>th</sub>/R<sub>wg</sub>), the standard deviation of the writing noise, and the R<sub>wg</sub>, respectively. When the noise is 0, the AdamNoise is the ideal learning process. Training with EaPU achieves much better results than the original method (89.71 % vs 17.55 %, writing/update noise of 2 μS).
