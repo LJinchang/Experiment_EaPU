@@ -31,6 +31,11 @@ python train_cifar.py --model-name resnet34 --num-classes 10 --optimizer adameap
 ```bash
 python train_cifar.py --model-name resnet152 --num-classes 100 --optimizer sgdeapu --lr 0.1 --clip-value 2.0 --noise-std 2.0 --Rwg 0.0125 --epoch 100
 ```
+## Swin Transformer
+To train the Swin Transformer, first set the path to the `train/train_mini_imagenet` folder, then run the following command:
+```bash
+python train_mini_imagenet.py --optimizer adameapu --lr 1e-5 --clip-value 2.0 --noise-std 2.0 --Rwg 0.0125
+```
 # Experiment result
 ## ResNet34 with CIFAR10
 <div align="center">
