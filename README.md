@@ -36,6 +36,7 @@ To train the SRResNet, first set the path to the `train/train_srresnet` folder, 
 ```bash
 python train_srresnet.py --optimizer adameapu --lr 1e-4 --clip-value 2.0 --noise-std 2.0 --Rwg 0.0125
 ```
+Before executing the above command, you can first run `split_images.py` to obtain small-sized images. This ensures that the input images have consistent dimensions and increases the amount of training data, thereby improving the training performance.
 ## Swin Transformer
 To train the Swin Transformer, first set the path to the `train/train_mini_imagenet` folder, then run the following command:
 ```bash
