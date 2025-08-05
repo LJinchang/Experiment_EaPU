@@ -13,10 +13,12 @@ For the CUDA version of PyTorch, the following command can be used for installat
 # Pretrained weight
 The pretrained weight of the Swin Transformer is available at https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth.
 
+Then, we can place the pretrained weight `swin_tiny_patch4_window7_224.pth` in `train/train_mini_imagenet`.
+
 # Data download
 Training data in SRResNet download at https://huggingface.co/datasets/goodfellowliu/SRGAN_ImageNet/resolve/main/SRGAN_ImageNet.zip;  
 Testing data in SRResNet download at https://huggingface.co/datasets/goodfellowliu/Set5/resolve/main/Set5.zip.    
-Then, we can extract data from the archive and place the folder in `train/train_srresnet/data`.
+Then, we can extract data from the archive and place the folder `ImageNet` and `Set5` in `train/train_srresnet/data`.
 
 Mini_imagenet data can be available at https://drive.google.com/file/d/1rK4ihgKpW2iIIs5yWnSFyFYa4FURCxM9/view?usp=drive_link.  
 Then, we can uncompress the archive and place the folder `images` in `train/train_mini_imagenet/mini_imagenet`.
