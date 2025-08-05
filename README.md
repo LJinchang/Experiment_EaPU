@@ -36,3 +36,7 @@ https://github.com/Lornatang/SRGAN-PyTorch
 
 https://github.com/WZMIAOMIAO/deep-learning-for-image-processing
 
+# License
+
+This project is covered under the **Apache 2.0 License**.
+
