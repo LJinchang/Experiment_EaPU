@@ -15,12 +15,12 @@ from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/CIFAR100 Training')
 parser.add_argument('--data-dir', default='./data', type=str, help='path to dataset')
-parser.add_argument('--cifar10', default=True, type=bool, help='cifar10 or cifar100')
+parser.add_argument('--cifar10', default=True, type=bool, help='CIFAR10 or CIFAR100')
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 
 parser.add_argument('--optimizer', default='adameapu', help='optimizer type (adameapu, adamnoise, sgdeapu, sgdnoise)')
 parser.add_argument('--lr', default=0.001, type=float, help='learning rate')
-parser.add_argument('--clip-value', default=2., type=float, help='clip_value = Vclip / Rwg, units: μS')
+parser.add_argument('--clip-value', default=2., type=float, help='clip_value = ΔWth / Rwg, units: μS')
 parser.add_argument('--noise-std', default=2., type=float, help='noise std (the standard deviation of the εcell, units: μS)')
 parser.add_argument('--ratio-wg', default=1/80., type=float, help='Rwg')
 
@@ -183,3 +183,4 @@ if __name__ == '__main__':
     os.makedirs('results', exist_ok=True)
     pre_fix = 'cifar10' if args.cifar10 else 'cifar100'
     np.save(f'results/record-{pre_fix}-{args.optimizer}({args.lr}-{args.clip_value}-{args.noise_std}-{args.ratio_wg}).npy', record)
+
