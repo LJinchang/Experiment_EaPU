@@ -1,6 +1,7 @@
 import os
-
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+import sys
+sys.path.extend(['../..'])
 
 import math
 import argparse
@@ -67,19 +68,20 @@ def main(args):
                              transform=data_transform["val"])
 
     batch_size = args.batch_size
-    nw = min([os.cpu_count(), batch_size if batch_size > 1 else 0, 8])  # number of workers
+    # nw = min([os.cpu_count(), batch_size if batch_size > 1 else 0, 8])  # number of workers
+    nw = 0
     print('Using {} dataloader workers every process'.format(nw))
     train_loader = torch.utils.data.DataLoader(train_data_set,
                                                batch_size=batch_size,
                                                shuffle=True,
-                                               pin_memory=True,
+                                               pin_memory=True and bool(nw),
                                                num_workers=nw,
                                                collate_fn=train_data_set.collate_fn)
 
     val_loader = torch.utils.data.DataLoader(val_data_set,
                                              batch_size=batch_size,
                                              shuffle=False,
-                                             pin_memory=True,
+                                             pin_memory=True and bool(nw),
                                              num_workers=nw,
                                              collate_fn=val_data_set.collate_fn)
     print("Load all datasets successfully.")
@@ -239,7 +241,7 @@ if __name__ == '__main__':
     parser.add_argument('--clip-value', default=2., type=float, help='clip_value = ΔWth / Rwg, units: μS')
     parser.add_argument('--noise-std', default=0., type=float,
                         help='noise std (the standard deviation of the εcell, units: μS)')
-    parser.add_argument('--ratio-wg', default=1 / 80., type=float, help='Rwg')
+    parser.add_argument('--ratio-wg', '--Rwg', default=1 / 80., type=float, help='Rwg')
 
     # data_root
     parser.add_argument('--data-path', type=str, default="./mini_imagenet")
@@ -248,7 +250,7 @@ if __name__ == '__main__':
                         help='initial weights path')
     default = 'checkpoint/swin_transformer_tiny.pth'
     parser.add_argument('--resume', type=str, default='')
-    parser.add_argument('--freeze-layers', type=bool, default=False)
+    parser.add_argument('--freeze-layers', '--freeze', action='store_true', help='freeze the layers expect the head layer')
 
     parser.add_argument('--device', default='cuda', help='device id (i.e. 0 or 0,1 or cpu)')
 
@@ -256,4 +258,3 @@ if __name__ == '__main__':
 
     optimizer = None
     main(opt)
-
