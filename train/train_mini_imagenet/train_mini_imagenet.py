@@ -236,7 +236,7 @@ if __name__ == '__main__':
                         help='optimizer type (adameapu, adamnoise, sgdeapu, sgdnoise)')
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--lrf', type=float, default=1e-6)
-    parser.add_argument('--clip-value', default=2., type=float, help='clip_value = Vclip / Rwg, units: μS')
+    parser.add_argument('--clip-value', default=2., type=float, help='clip_value = ΔWth / Rwg, units: μS')
     parser.add_argument('--noise-std', default=0., type=float,
                         help='noise std (the standard deviation of the εcell, units: μS)')
     parser.add_argument('--ratio-wg', default=1 / 80., type=float, help='Rwg')
@@ -256,3 +256,4 @@ if __name__ == '__main__':
 
     optimizer = None
     main(opt)
+
