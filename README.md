@@ -16,8 +16,8 @@ The pretrained weight of the Swin Transformer is available at https://github.com
 Then, we can place the pretrained weight `swin_tiny_patch4_window7_224.pth` in `train/train_mini_imagenet`.
 
 # Data download
-Training data in SRResNet download at [ImageNet.zip](https://drive.google.com/file/d/1AHxUr5xbZ6CFCkDBLomt6o7JkSDUmy7o/view?usp=drive_link);  
-Testing data in SRResNet download at [Set5.zip](https://drive.google.com/file/d/1eypkJ9_nuctJEtUGYQIT8ZFf8nMxPRUe/view?usp=drive_link).    
+The training data used in SRResNet can be downloaded from [ImageNet.zip](https://drive.google.com/file/d/1AHxUr5xbZ6CFCkDBLomt6o7JkSDUmy7o/view?usp=drive_link);  
+The testing data used in SRResNet can be downloaded from [Set5.zip](https://drive.google.com/file/d/1eypkJ9_nuctJEtUGYQIT8ZFf8nMxPRUe/view?usp=drive_link).    
 Then, we can extract data from the archive and place the folder `ImageNet` and `Set5` in `train/train_srresnet/data`.
 
 Mini-imagenet data can be available at [mini-imagenet.zip](https://drive.google.com/file/d/1rK4ihgKpW2iIIs5yWnSFyFYa4FURCxM9/view?usp=drive_link).  
