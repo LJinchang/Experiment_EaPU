@@ -22,7 +22,15 @@ Then, we can extract data from the archive and place the folder `ImageNet` and `
 
 Mini-imagenet data can be available at [mini-imagenet.zip](https://drive.google.com/file/d/1rK4ihgKpW2iIIs5yWnSFyFYa4FURCxM9/view?usp=drive_link).  
 Then, we can uncompress the archive and place the folder `images` in `train/train_mini_imagenet/mini_imagenet`.
-
+# Train
+## ResNet
+To train the ResNet model, first set the path to the `train/train_cifar` folder, then run the following command:
+```bash
+python train_cifar.py --model-name resnet34 --num-classes 10 --optimizer adameapu --lr 0.001 --clip-value 2.0 --noise-std 2.0 --Rwg 0.0125
+```
+```bash
+python train_cifar.py --model-name resnet152 --num-classes 100 --optimizer sgdeapu --lr 0.1 --clip-value 2.0 --noise-std 2.0 --Rwg 0.0125
+```
 # Experiment result
 ## ResNet34 with CIFAR10
 <div align="center">
