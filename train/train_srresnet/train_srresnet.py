@@ -1,5 +1,7 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '2'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+import sys
+sys.path.extend(['../..'])
 import random
 import argparse
 import time
@@ -24,7 +26,7 @@ from optimizer import AdamNoise, AdamEaPU, SGDNoise, SGDEaPU
 # torch.manual_seed(0)
 
 parser = argparse.ArgumentParser(description='Pytorch SRResNet Training')
-parser.add_argument('--train-gt-images-dir', default='./data/SRGAN_ImageNet', type=str, help='train images directory')
+parser.add_argument('--train-gt-images-dir', default='./data/ImageNet', type=str, help='train images directory')
 parser.add_argument('--gt-image-size', default=96, type=int, help='train images size (cropped)')
 parser.add_argument('--test-gt-images-dir', default='./data/Set5/X4/GT', type=str, help='test ground truth directory')
 parser.add_argument('--test-lr-images-dir', default='./data/Set5/X4/LR', type=str, help='test low resolution images directory')
@@ -33,9 +35,9 @@ parser.add_argument('--batch-size', default=16, type=int, help='train batch size
 
 parser.add_argument('--optimizer', default='adameapu', help='optimizer type (adameapu, adamnoise, sgdeapu, sgdnoise)')
 parser.add_argument('--lr', default=1e-4, type=float, help='learning rate')
-parser.add_argument('--clip-value', default=1., type=float, help='clip_value = ΔWth / Rwg, units: μS')
-parser.add_argument('--noise-std', default=0., type=float, help='noise std (the standard deviation of the εcell, units: μS)')
-parser.add_argument('--ratio-wg', default=1/80., type=float, help='Rwg')
+parser.add_argument('--clip-value', default=2., type=float, help='clip_value = ΔWth / Rwg, units: μS')
+parser.add_argument('--noise-std', default=2., type=float, help='noise std (the standard deviation of the εcell, units: μS)')
+parser.add_argument('--ratio-wg', '--Rwg', default=1/80., type=float, help='Rwg')
 
 parser.add_argument('--pretrained-weights-path', default='', help='pretrained model weights path')
 
@@ -318,6 +320,4 @@ if __name__ == '__main__':
 
     np.save(f'results/record-{args.optimizer}({args.lr}-{args.clip_value}-{args.noise_std}-{args.ratio_wg}).npy',
             {'PSNRs':psnrs, 'SSIMs':ssims})
-
-
 
