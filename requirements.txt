@@ -7,3 +7,4 @@ opencv-python==4.11.0.86
 pillow==10.2.0
 matplotlib==3.7.5
 tqdm==4.66.5
+tensorboard==2.14.0
