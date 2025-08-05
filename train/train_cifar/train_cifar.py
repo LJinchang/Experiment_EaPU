@@ -1,5 +1,7 @@
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+import sys
+sys.path.extend(['../..'])
 import argparse
 
 import torch
@@ -15,30 +17,35 @@ from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/CIFAR100 Training')
 parser.add_argument('--data-dir', default='./data', type=str, help='path to dataset')
-parser.add_argument('--cifar10', default=True, type=bool, help='CIFAR10 or CIFAR100')
+parser.add_argument('--num-classes', default=10, type=int, help='10 or 100 (refer to CIFAR10 or CIFAR100)')
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 
+parser.add_argument('--model-name', default='resnet34', help='resnet34 or resnet152')
 parser.add_argument('--optimizer', default='adameapu', help='optimizer type (adameapu, adamnoise, sgdeapu, sgdnoise)')
 parser.add_argument('--lr', default=0.001, type=float, help='learning rate')
 parser.add_argument('--clip-value', default=2., type=float, help='clip_value = ΔWth / Rwg, units: μS')
 parser.add_argument('--noise-std', default=2., type=float, help='noise std (the standard deviation of the εcell, units: μS)')
-parser.add_argument('--ratio-wg', default=1/80., type=float, help='Rwg')
+parser.add_argument('--ratio-wg', '--Rwg', default=1/80., type=float, help='Rwg')
 
 parser.add_argument('--epochs', default=50, type=int, help='number of epochs')
 args = parser.parse_args()
-
+print(args)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(device)
 
 # Data
+args.cifar10 = args.num_classes == 10
 trainloader, testloader = get_loader(root=args.data_dir, cifar10=args.cifar10)
-num_classes = 10 if args.cifar10 else 100
+num_classes = args.num_classes
 print("Load all datasets successfully.")
 
 # Model
-model_name = 'resnet34'
-net = PreActResNet34(num_classes=num_classes)
+model_name = args.model_name
+if model_name == 'resnet34':
+    net = PreActResNet34(num_classes=num_classes)
+else:
+    net = PreActResNet152(num_classes=num_classes)
 net = net.to(device)
 print(net)
 print(f"Build `{model_name}` model successfully.")
@@ -183,4 +190,3 @@ if __name__ == '__main__':
     os.makedirs('results', exist_ok=True)
     pre_fix = 'cifar10' if args.cifar10 else 'cifar100'
     np.save(f'results/record-{pre_fix}-{args.optimizer}({args.lr}-{args.clip_value}-{args.noise_std}-{args.ratio_wg}).npy', record)
-
