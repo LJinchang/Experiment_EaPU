@@ -161,17 +161,17 @@ def get_loader(args, device) -> [CUDAPrefetcher, CUDAPrefetcher]:
     train_dataloader = DataLoader(train_datasets,
                                   batch_size=args.batch_size,
                                   shuffle=True,
-                                  num_workers=8,
-                                  pin_memory=True,
+                                  num_workers=0,
+                                  pin_memory=False,
                                   drop_last=True,
-                                  persistent_workers=True)
+                                  persistent_workers=False)
     test_dataloader = DataLoader(test_datasets,
                                  batch_size=1,
                                  shuffle=False,
-                                 num_workers=1,
-                                 pin_memory=True,
+                                 num_workers=0,
+                                 pin_memory=False,
                                  drop_last=False,
-                                 persistent_workers=True)
+                                 persistent_workers=False)
 
     # Place all data on the preprocessing data loader
     train_prefetcher = CUDAPrefetcher(train_dataloader, device)
