@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import sys
 sys.path.extend(['../..'])
 
@@ -258,3 +258,4 @@ if __name__ == '__main__':
 
     optimizer = None
     main(opt)
+
